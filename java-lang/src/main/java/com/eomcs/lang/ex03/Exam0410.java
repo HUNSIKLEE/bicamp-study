@@ -35,13 +35,13 @@ public class Exam0410 {
     // 단, 0 ~ 377 범위의 8진수만 가능하다.
     System.out.println('\101'); // A
     System.out.println('\122'); // R
-    System.out.println('\377'); // ÿ
+    System.out.println('\377'); // ÿ                      ?로 표시됨
     //System.out.println('\477'); // 컴파일 오류!
 
     // 유니코드 값을 직접 적는 경우는
     // 보통 키보드로 문자를 직접 입력할 수 없을 때이다.
     System.out.println('\u4eba'); // 사람을 뜻하는 '인(人)'이라는 한자의 문자 코드
-    System.out.println('\u00a9'); // copyright를 뜻하는 '©' 문자 코드
+    System.out.println('\u00a9'); // copyright를 뜻하는 '©' 문자 코드 ?표로 표시됨
     System.out.println('\u03c0'); // 수학의 파이 기호 'π'
     System.out.println('\u03a3'); // 수학의 시그마 기호 'Σ'
   }
