@@ -8,9 +8,10 @@ public class Exam0330 {
     //## 4바이트 부동소수점의 최대값과 최소값
     System.out.println(Float.MAX_VALUE);
     System.out.println(Float.MIN_VALUE);
-    
+    //유효소수점 7자리 까지만 출력가능.
     //## 8바이트 부동소수점의 최대값과 최소값
     System.out.println(Double.MAX_VALUE);
     System.out.println(Double.MIN_VALUE);
+    //유효소수점 15자리 까지만 출력가능.
   }
 }

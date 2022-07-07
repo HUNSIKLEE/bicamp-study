@@ -12,7 +12,7 @@ public class Exam0610 {
     // 문자열 리터럴 기본 예
     System.out.println("ABC가나다");
 
-    // 문자열에 유니코드를 포함할 수 있다.
+    // 문자열에 유니코드를 포함할 수 있다. ("\u0041(A)BC\uac00(가)나다");
     System.out.println("\u0041BC\uac00나다");
   }
 }
