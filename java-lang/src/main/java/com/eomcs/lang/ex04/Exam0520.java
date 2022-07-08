@@ -12,7 +12,7 @@ package com.eomcs.lang.ex04;
 public class Exam0520 {
   public static void main(String[] args) {
     int[] arr1 = new int[5];
-
+          //arr1에는 arr1[0]의 주소값이 들어가있는데 
     // 배열 메모리에 접근
     arr1[0] = 100;
     arr1[1] = 200;
