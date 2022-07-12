@@ -13,12 +13,6 @@ public class App {
     System.out.println();
 
     java.util.Scanner keyboardInput = new java.util.Scanner(System.in);
-    java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
-
-    String[] titles = new String[1000];
-    String[] contents = new String[1000];
-    String[] writers = new String[1000];
-    String[] passwords = new String[1000];
 
     String title = "";
     String content = "";
@@ -40,7 +34,7 @@ public class App {
         break;
       } else if (menuNo == 1) {
         System.out.println("[게시글 목록]");
-        System.out.println("번호 \t제목 \t\t조회수 \t작성자 \t등록일");
+        System.out.println("번호 제목 조회수 작성자 등록일");
 
         System.out.print(1);
         System.out.print("\t");
@@ -48,16 +42,16 @@ public class App {
         System.out.print('\t');
         System.out.print(20 + "\t");
         System.out.print("홍길동\t");
-        System.out.print(now);
+        System.out.print("2022-07-08\r\n");
 
-        System.out.print("2" + "\n\t" + "제목입니다2\t" +
-            11 + "\t" + "홍길동\t" + now);
+        System.out.print(2 + "\t" + "제목입니다2\t" +
+            11 + "\t" + "홍길동\t" + "2022-07-08\n");
 
-        System.out.println("3" + "\n\t제목입니다3\t" +
-            31 + "\t" + "임꺽정\t"+now);
+        System.out.println(3 + "\t제목입니다3\t" +
+            31 + "\t" + "임꺽정\t2022-07-08");
 
         System.out.printf("%d\t%s\t%d\t%s\t%s\n",
-            4, "제목입니다4", 45, "유관순", now);
+            4, "제목입니다4", 45, "유관순", "2022-07-08");
       } else if (menuNo == 2) {
         System.out.println("[게시글 상세보기]");
 
@@ -66,7 +60,7 @@ public class App {
         System.out.printf("내용: %s\n", content);
         System.out.printf("조회수: %d\n", 100);
         System.out.printf("작성자: %s\n", writer);
-        System.out.printf("등록일: %s\n", now);
+        System.out.printf("등록일: %s\n", "2022-07-08");
       } else if (menuNo == 3) {
         System.out.println("[게시글 등록]");
 
