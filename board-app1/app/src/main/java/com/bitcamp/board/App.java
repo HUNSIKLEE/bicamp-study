@@ -14,12 +14,12 @@ public class App {
 
     java.util.Scanner keyboardInput = new java.util.Scanner(System.in);
     java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
-
+/* 
     String[] titles = new String[1000];
     String[] contents = new String[1000];
     String[] writers = new String[1000];
     String[] passwords = new String[1000];
-
+*/
     String title = "";
     String content = "";
     String writer = "";
