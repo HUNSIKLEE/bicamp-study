@@ -5,82 +5,137 @@
 package com.bitcamp.board;
 
 public class App {
-  public static void main(String[] args) {
 
+  public static void main(String[] args) {
     System.out.println("[게시판 애플리케이션]");
     System.out.println();
     System.out.println("환영합니다!");
     System.out.println();
 
     java.util.Scanner keyboardInput = new java.util.Scanner(System.in);
-    java.sql.Date now = new java.sql.Date(System.currentTimeMillis());
-/* 
-    String[] titles = new String[1000];
-    String[] contents = new String[1000];
-    String[] writers = new String[1000];
-    String[] passwords = new String[1000];
-*/
-    String title = "";
-    String content = "";
-    String writer = "";
-    String password = "";
 
-    while (true) {
+    final int SIZE = 3;
+
+    int[] no = new int[SIZE];
+    String[] title = new String[SIZE];
+    String[] content = new String[SIZE];
+    String[] writer = new String[SIZE];
+    String[] password = new String[SIZE];
+    int[] viewCount = new int[SIZE];
+    long[] createdDate = new long[SIZE];
+
+    int boardCount = 0; // 저장된 게시글의 개수를 담는변수
+
+    while (true) { // for (;;) 같은뜻 
       System.out.println("메뉴:");
       System.out.println("  1: 게시글 목록");
       System.out.println("  2: 게시글 상세보기");
       System.out.println("  3: 게시글 등록");
       System.out.println();
       System.out.print("메뉴를 선택하세요[1..3](0: 종료) ");
-      
+
       int menuNo = keyboardInput.nextInt();
       keyboardInput.nextLine(); // 입력한 숫자 뒤에 남아 있는 줄바꿈 코드 제거
 
+      System.out.println("--------------------------------------------");
       if (menuNo == 0) {
         break;
+
       } else if (menuNo == 1) {
         System.out.println("[게시글 목록]");
-        System.out.println("번호 \t제목 \t\t조회수 \t작성자 \t등록일");
+        System.out.println("번호 제목 조회수 작성자 등록일");
 
-        System.out.print(1);
-        System.out.print("\t");
-        System.out.print("제목입니다1");
-        System.out.print('\t');
-        System.out.print(20 + "\t");
-        System.out.print("홍길동\t");
-        System.out.print(now);
+        //날짜 정보에서 값을 추출하여 특정 포맷의 문자열로 만들어줄 도구를 준비
+        java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy-MM-dd");
 
-        System.out.print("2" + "\n\t" + "제목입니다2\t" +
-            11 + "\t" + "홍길동\t" + now);
+        for (int i = 0; i < boardCount; i++) {
+          //밀리초 데이터를 Date 도구함으로 날짜 정보를 설정
+          java.util.Date date = new java.util.Date(createdDate[i]);
 
-        System.out.println("3" + "\n\t제목입니다3\t" +
-            31 + "\t" + "임꺽정\t"+now);
+          // 날짜 정보를 ==> "yyy-MM-dd"형식의 문자열로 바꿔줌
+          String dateStr = formatter.format(date);
 
-        System.out.printf("%d\t%s\t%d\t%s\t%s\n",
-            4, "제목입니다4", 45, "유관순", now);
+          System.out.printf("%d\t%s\t%d\t%s\t%s\n" , 
+          no[i],title[i],viewCount[i],writer[i], "2002-07-08");
+          
+         
+        }
+        
+
+      
       } else if (menuNo == 2) {
         System.out.println("[게시글 상세보기]");
 
-        System.out.printf("번호: %d\n", 1);
-        System.out.printf("제목: %s\n", title);
-        System.out.printf("내용: %s\n", content);
-        System.out.printf("조회수: %d\n", 100);
-        System.out.printf("작성자: %s\n", writer);
-        System.out.printf("등록일: %s\n", now);
+        System.out.print("조회할 게시글 번호?");
+        String input = keyboardInput.nextLine();
+        int boardNo = Integer.parseInt(input);
+
+        //해당 번호의 게시글이 몇 번 배열에 들어 있는지 알아내기
+        int boardIndex = -1;
+         
+        for(int i = 0; i < boardCount; i++) {
+          if(no[i] == boardNo){
+            boardIndex = i;
+            break;//            ?????????????????
+          }
+        }
+
+        //사용자가 입력한 번호에 해당하는 게시글을 못 찾았다면
+        if(boardIndex == -1){
+            System.out.println("해당 번호의 게시글의 없습니다!");
+          continue;
+          }
+
+
+        System.out.printf("번호: %d\n", no[boardIndex]);
+        System.out.printf("제목: %s\n", title[boardIndex]);
+        System.out.printf("내용: %s\n", content[boardIndex]);
+        System.out.printf("조회수: %d\n", viewCount[boardIndex]);
+        System.out.printf("작성자: %s\n", writer[boardIndex]);
+        java.util.Date date = new java.util.Date(createdDate[boardIndex]);
+
+        // Date 도구함의 도구를 쓸 수 있도록 데이터를 준비시킨다.
+        // new Date(밀리초)
+        //   => 지정한 밀리초를 가지고 날짜 관련 도구를 사용할 수 있도록 설정한다.
+        // Date date
+        //   => createdDate 밀리초를 가지고 설정한 날짜 정보
+       
+        // Date 도구함을 통해 설정한 날짜 정보를 가지고 printf()를 실행한다.
+        // %Y : date에 설정된 날짜 정보에서 년도만 추출한다.
+        System.out.printf("등록일: %tY-%1$tm-%1$td %1$tH:%1$tM\n", date);
+
       } else if (menuNo == 3) {
         System.out.println("[게시글 등록]");
 
+        //배열의 크기를 초과하지 않았는지 검사한다.
+        if(boardCount == SIZE){
+          System.out.println("게시글을 더이상 저장할 수 없어요.");
+          continue;
+        }
+
         System.out.print("제목? ");
-        title = keyboardInput.nextLine();
+        title[boardCount] = keyboardInput.nextLine();
 
         System.out.print("내용? ");
-        content = keyboardInput.nextLine();
+        content[boardCount] = keyboardInput.nextLine();
 
-        System.out.print("작성자? "); 
-        writer = keyboardInput.nextLine();
+        System.out.print("작성자? ");
+        writer[boardCount] = keyboardInput.nextLine();
 
         System.out.print("암호? ");
-        password = keyboardInput.nextLine();
+        password[boardCount] = keyboardInput.nextLine();
+/*
+        if(boardCount == 0) {
+          no[boardCount] = 1;
+        } else{
+          no[boardCount] = no[boardCount -1] + 1;
+        }  */
+        no[boardCount] = boardCount == 0 ? 1 : no[boardCount -1] + 1; // 다시 공부 하기
+
+        viewCount[boardCount] = 0;
+        createdDate[boardCount] = System.currentTimeMillis();
+        
+        boardCount++;
 
       } else {
         System.out.println("메뉴 번호가 옳지 않습니다!");

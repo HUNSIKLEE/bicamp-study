@@ -14,4 +14,4 @@ public class Exam0430 {
   }
 }
 
-
+// 손코딩 많이함.
