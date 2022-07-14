@@ -12,7 +12,7 @@ public class Prompt {
     String str = keyboardInput.nextLine();
     return Integer.parseInt(str);   
   }
-  
+
   static int inputInt(String title) {
     System.out.print(title);//
     String str = keyboardInput.nextLine();
