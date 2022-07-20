@@ -9,7 +9,7 @@ package com.eomcs.quiz.ex01.sol;
 // - 반복문 활용
 // - 메서드 파라미터 및 리턴 값 다루기
 //
-public class Test02 {
+public class Test02_3 {
 
   public static void main(String[] args) {
     int p = parity(0b01100011);
@@ -20,12 +20,14 @@ public class Test02 {
   }
 
   static int parity(int value) {
-    value ^= value >>> 16;
-    value ^= value >>> 8;
-    value ^= value >>> 4;
-    value ^= value >>> 2;
-    value ^= value >>> 1;
-    return value & 1;
+    int r = 0;
+
+    while (value != 0) {
+      r ^= 1;
+      value &= (value -1);
+    }
+
+    return r;
   }
 
 }

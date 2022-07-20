@@ -16,7 +16,7 @@ public class Exam0120 {
   //    예) getName(), setName(), printName(), doFilter(), parseInt() 등
   // => 물론 명사구나 전치사구 형태로 짓는 경우도 있다.
   //    예) valueOf(), toString() 등
-  //
+
   static void printSpaces(int len) {
     for (int i = 0; i < len; i++) {
       System.out.print(" ");

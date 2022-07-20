@@ -11,36 +11,28 @@ public class App {
 
     loop: while (true) {
 
-
-      System.out.println("게시:");
-      System.out.println();
+      // 메인 메뉴 출력
+      System.out.println("메뉴:");
       System.out.println("  1: 게시판");
-      System.out.println("  2: 독서란");
+      System.out.println("  2: 독서록");
       System.out.println("  3: 방명록");
       System.out.println("  4: 공지사항");
       System.out.println();
+      int mainMenuNo = Prompt.inputInt("메뉴를 선택하세요[1..4](0: 종료) ");
 
-      int mainmenuNo = Prompt.inputInt("메뉴를 선택하세요[1..4](0: 종료) ");
-
-
-
-      switch (mainmenuNo) {
-        case 0: break loop; 
-        case 1: 
+      switch (mainMenuNo) {
+        case 0: break loop;
+        case 1: // 게시판
           BoardHandler.execute();
           break;
-        case 2: 
+        case 2: // 독서록
           break;
-        case 3: 
+        case 3: // 방명록
           break;
-        case 4: 
-          break;
-        case 5: 
+        case 4: // 공지사항
           break;
         default: System.out.println("메뉴 번호가 옳지 않습니다!");
-
-
-      }
+      } // switch
 
 
     } // while
@@ -54,8 +46,12 @@ public class App {
     System.out.println();
     System.out.println("환영합니다!");
     System.out.println();
-
   }
 }
+
+
+
+
+
 
 

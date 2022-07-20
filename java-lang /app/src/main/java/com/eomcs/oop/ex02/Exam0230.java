@@ -13,6 +13,11 @@ public class Exam0230 {
     // - 클래스가 메모리에 로딩될 때 자동으로 "Method Area" 영역에 생성된다.
     static int result = 0;
 
+
+    int plus2(int value) {
+      return value + 100;
+
+    }
     static void plus(int value) {
       // 메서드 작업 결과는 클래스 변수에 보관한다.
       result += value; // result = result + value

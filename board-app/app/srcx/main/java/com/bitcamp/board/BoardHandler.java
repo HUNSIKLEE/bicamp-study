@@ -12,10 +12,9 @@ public class BoardHandler {
   // Board 인스턴스의 주소를 저장할 레퍼런스 배열을 만든다.
   static Board[] boards = new Board[SIZE];
 
-
   static void execute() {
     while (true) {
-      System.out.println("게시:");
+      System.out.println("게시판:");
       System.out.println();
       System.out.println("  1: 목록");
       System.out.println("  2: 상세보기");
@@ -24,10 +23,8 @@ public class BoardHandler {
       System.out.println("  5: 변경");
       System.out.println();
 
-      int menuNo = Prompt.inputInt("메뉴를 선택하세요[1..5](0: 종료) ");
-
-      displayHeadline();
-
+      int menuNo = Prompt.inputInt("메뉴를 선택하세요[1..5](0: 이전) ");
+      displayHeadLine();
 
       switch (menuNo) {
         case 0: return;
@@ -37,19 +34,25 @@ public class BoardHandler {
         case 4: BoardHandler.processDelete(); break;
         case 5: BoardHandler.processUpdate(); break;
         default: System.out.println("메뉴 번호가 옳지 않습니다!");
-
       }
 
       displayBlankLine();
-    } // while
+    } // 게시판 while
   }
-  static void displayHeadline() {
+
+
+  static void displayHeadLine() {
     System.out.println("=========================================");
   }
 
   static void displayBlankLine() {
     System.out.println(); // 메뉴를 처리한 후 빈 줄 출력
   }
+
+
+
+
+
 
   static void processList() {
     // 날짜 정보에서 값을 추출하여 특정 포맷의 문자열로 만들어줄 도구를 준비
