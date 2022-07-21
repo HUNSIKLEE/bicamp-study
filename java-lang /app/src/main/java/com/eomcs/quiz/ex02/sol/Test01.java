@@ -1,4 +1,4 @@
-package com.eomcs.quiz.ex01.sol;
+package com.eomcs.quiz.ex02.sol;
 
 // 출처: codefights.com
 //
@@ -6,8 +6,10 @@ package com.eomcs.quiz.ex01.sol;
 // 예)
 // [2, 4, 1, 0] => 3
 // 
-
-public class Test05 {
+// [시간 복잡도]
+// - O(n) : n은 배열의 개수이다.
+//
+public class Test01 {
 
   public static void main(String[] args) {
     System.out.println(maxDiff(new int[]{2, 4, 1, 0}) == 3);

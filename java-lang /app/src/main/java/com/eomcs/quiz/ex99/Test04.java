@@ -1,4 +1,4 @@
-package com.eomcs.quiz.ex01.sol;
+package com.eomcs.quiz.ex01;
 
 // 출처: codefights.com
 //
@@ -16,13 +16,11 @@ public class Test04 {
 
   static int countEvenNumber(int value) {
     int result = 0;
-    int n = value;
-    while(n != 0) {
-      if ((n % 2) == 0) {
-        result++;
-      }
-      n /= 10;
+    while (value != 0) {
+      result += (value / 10);
+      value >>>= 1; 
     }
+
     return result;
   }
 }
