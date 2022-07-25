@@ -1,4 +1,4 @@
-package src.main.java.com.bitcamp.board.dao;
+package com.bitcamp.board.dao;
 
 import com.bitcamp.board.domain.Board;
 
