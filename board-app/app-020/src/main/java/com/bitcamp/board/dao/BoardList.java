@@ -1,11 +1,20 @@
 package com.bitcamp.board.dao;
 
-import com.bitcamp.board.domain.Member;
-import com.bitcamp.util.ObjectList;
+import com.bitcamp.board.domain.Board;
+import com.bitcamp.util.LinkedList;
 
-// 회원 목록을 관리하는 역할
+// 게시글 목록을 관리하는 역할
 //
-public class MemberList extends ObjectList {
+public class BoardList extends LinkedList {
+
+  private int boardNo = 0;
+
+  @Override
+  public void append(Object e) {
+    Board board = (Board) e;
+    board.no = nextNo();
+    super.append(e);
+  }
 
   // ObjectList의 get()에서 던지는 예외를 이 메서드에서 처리하지 않고
   // 호출자에게 처리를 위임한다.
@@ -13,11 +22,12 @@ public class MemberList extends ObjectList {
   //    메서드 선언부에 표시하지 않아도 된다.
   //    Exception 계열의 예외를 다루는 것 보다 덜 번거롭다.
   //
-  public Member get(String email) {
-    for (int i = 0; i < size(); i++) {
-      Member member = (Member) get(i);
-      if (member.email.equals(email)) {
-        return member;
+  @Override
+  public Board retrieve(int boardNo) {
+    for (int i = 0; i < length(); i++) {
+      Board board = (Board) super.retrieve(i);
+      if (board.no == boardNo) {
+        return board;
       }
     }
     return null;
@@ -29,14 +39,20 @@ public class MemberList extends ObjectList {
   //    메서드 선언부에 표시하지 않아도 된다.
   //    Exception 계열의 예외를 다루는 것 보다 덜 번거롭다.
   //
-  public boolean remove(String email) {
-    for (int i = 0; i < size(); i++) {
-      Member member = (Member) get(i);
-      if (member.email.equals(email)) {
-        return remove(i);
+  @Override
+  public Object delete(int boardNo) {
+    for (int i = 0; i < length(); i++) {
+      Board board = (Board) super.retrieve(i);
+      if (board.no == boardNo) {
+        return super.delete(i);
       }
     }
-    return false;
+
+    return null;
+  }
+
+  private int nextNo() {
+    return ++boardNo;
   }
 }
 

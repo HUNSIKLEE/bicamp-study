@@ -32,7 +32,11 @@ public class Test14 {
 
   static int numberReverse(int input) {
     int reversed = 0;
-    // 이 메서드를 완성하시오!
+    while (input > 0 ) {
+      int v = input % 10; // 입력 값에서 1의 자리 값을 알아낸다.
+      reversed = (reversed * 10) + v; //기존의 값을 한 자리 올린후, 알아  1의 자리 값을 결과 변수에 더한다.
+      input /=10;// 입력 값을 한 자리 낮춘다.
+    }
     return reversed;
   }
 }
