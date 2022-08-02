@@ -20,4 +20,6 @@ public interface Worker {
   //    (규칙은 공개되어야 하니까!)
   //
   void execute();
+  //=> public sbstract void ececute();
+
 }

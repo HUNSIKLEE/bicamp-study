@@ -1,6 +1,11 @@
 package com.bitcamp.util;
 
-public class ObjectList {
+
+// List 규겍에 따라 메서드를 구현할 것이라고 선언한다!
+//만약 규격에 따라 메서드를 구현하지 않으면 컴파일을 안 해준다.
+
+
+public class ObjectList implements List {
 
   private static final int DEFAULT_CAPACITY = 10;
 
@@ -15,6 +20,7 @@ public class ObjectList {
     elementData = new Object[initialCapacity];
   }
 
+  @Override
   public void add(Object e) {
     if (size == elementData.length) {
       grow();
@@ -23,6 +29,7 @@ public class ObjectList {
     elementData[size++] = e;
   }
 
+  @Override
   public Object[] toArray() {
     Object[] arr = new Object[size];
     for (int i = 0; i < arr.length; i++) {
@@ -41,6 +48,7 @@ public class ObjectList {
    * @return index에 저장된 항목
    * @throws ListException 인덱스가 무효함 
    */
+  @Override
   public Object get(int index) /*throws ListException*/ {
     if (index < 0 || index >= size) {
       throw new ListException("인덱스가 무효함!");
@@ -48,10 +56,15 @@ public class ObjectList {
     return elementData[index];
   }
 
-  public boolean remove(int index) /*throws ListException*/ {
+  @Override
+  public Object remove(int index) /*throws ListException*/ {
     if (index < 0 || index >= size) {
       throw new ListException("인덱스가 무효합니다!");
     }
+
+    //삭제한 객체를 리턴할 수 있도록 임시 변수에 담아 둔다.
+    Object deleted = elementData[index];
+
     for (int i = index + 1; i < size; i++) {
       elementData[i - 1] = elementData[i];
     }
@@ -59,6 +72,7 @@ public class ObjectList {
     return true;
   }
 
+  @Override
   public int size() {
     return size;
   }
@@ -71,6 +85,8 @@ public class ObjectList {
     }
     elementData = newArray;
   }
+
+
 }
 
 
