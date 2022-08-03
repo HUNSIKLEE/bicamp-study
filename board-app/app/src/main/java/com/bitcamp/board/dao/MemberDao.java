@@ -16,6 +16,8 @@ public class MemberDao {
   // MemberDao 클래스에 해당 메서드를 직접 정의해야 한다.
   // 물론, 실제 작업은 ObjectList 가 할 것이다.
   //
+
+
   public void insert(Member member) {
     list.add(member);
   }

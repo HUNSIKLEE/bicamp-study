@@ -7,7 +7,6 @@ import com.bitcamp.util.List;
 // 게시글 목록을 관리하는 역할
 //
 public class BoardDao {
-
   // BoardDao는 ObjectList 객체를 포함한다.
   // => BoardDao는 ObjectList의 기능에 의존한다.
   // => 따라서 ObjectList는 BoardDao가 의존하는 객체이다. ==> "dependency" 의존 객체 
