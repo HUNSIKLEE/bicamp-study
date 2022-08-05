@@ -14,12 +14,11 @@ public class MemberHandler extends AbstractHandler {
   private MemberDao memberDao = new MemberDao();
 
   public MemberHandler() {
-    super(new String[] {"목록", "상세보기", "등록", "삭제", "변경"} );
+    super(new String[] {"목록", "상세보기", "등록", "삭제", "변경"});
   }
 
   @Override
   public void service(int menuNo) {
-
     switch (menuNo) {
       case 1: this.onList(); break;
       case 2: this.onDetail(); break;
@@ -42,7 +41,6 @@ public class MemberHandler extends AbstractHandler {
   }
 
   private void onDetail() {
-
     String email = Prompt.inputString("조회할 회원 이메일? ");
 
     Member member = this.memberDao.findByEmail(email);
@@ -59,7 +57,6 @@ public class MemberHandler extends AbstractHandler {
   }
 
   private void onInput() {
-
     Member member = new Member();
 
     member.name = Prompt.inputString("이름? ");
@@ -73,7 +70,6 @@ public class MemberHandler extends AbstractHandler {
   }
 
   private void onDelete() {
-
     String email = Prompt.inputString("삭제할 회원 이메일? ");
 
     if (memberDao.delete(email)) {
@@ -84,7 +80,6 @@ public class MemberHandler extends AbstractHandler {
   }
 
   private void onUpdate() {
-
     String email = Prompt.inputString("변경할 회원 이메일? ");
 
     Member member = this.memberDao.findByEmail(email);
@@ -107,3 +102,7 @@ public class MemberHandler extends AbstractHandler {
     }
   }
 }
+
+
+
+
