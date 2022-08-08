@@ -11,10 +11,11 @@ import com.bitcamp.util.Prompt;
 
 public class MemberHandler extends AbstractHandler {
 
-  private MemberDao memberDao = new MemberDao();
+  private MemberDao memberDao;
 
-  public MemberHandler() {
+  public MemberHandler(String filename) {
     super(new String[] {"목록", "상세보기", "등록", "삭제", "변경"});
+    memberDao = new MemberDao(filename);
   }
 
   @Override

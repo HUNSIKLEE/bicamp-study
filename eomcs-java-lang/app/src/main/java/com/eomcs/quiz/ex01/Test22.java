@@ -50,7 +50,13 @@ public class Test22 {
   }
 
   static String getMonthName(int mo) {
-    // 이 메서드를 완성하시오!
-    return "";
+
+    String[] names = {  "Jan","Feb","Mar","Apr", "May","Jun","Jul","Aug","Sep","Oct", "Nov","Dec" };
+    if (mo < 1 || mo > names.length) {
+      return " invalid month";
+
+    }
+
+    return names[mo-1];
   }
 }
