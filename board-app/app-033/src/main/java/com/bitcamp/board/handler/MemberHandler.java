@@ -15,13 +15,11 @@ public class MemberHandler extends AbstractHandler {
 
   public MemberHandler(String filename) {
     super(new String[] {"목록", "상세보기", "등록", "삭제", "변경"});
-
     memberDao = new MemberDao(filename);
-
 
     try {
       memberDao.load();
-    }catch (Exception e) {
+    } catch (Exception e) {
       System.out.printf("%s 파일 로딩 중 오류 발생!\n", filename);
     }
   }
@@ -69,7 +67,7 @@ public class MemberHandler extends AbstractHandler {
     System.out.printf("등록일: %tY-%1$tm-%1$td %1$tH:%1$tM\n", date);
   }
 
-  private void onInput() throws Exception{
+  private void onInput() throws Exception {
     Member member = new Member();
 
     member.name = Prompt.inputString("이름? ");
@@ -79,10 +77,11 @@ public class MemberHandler extends AbstractHandler {
 
     this.memberDao.insert(member);
     memberDao.save();
+
     System.out.println("회워을 등록했습니다.");
   }
 
-  private void onDelete() throws Exception{
+  private void onDelete() throws Exception {
     String email = Prompt.inputString("삭제할 회원 이메일? ");
 
     if (memberDao.delete(email)) {
@@ -93,7 +92,7 @@ public class MemberHandler extends AbstractHandler {
     }
   }
 
-  private void onUpdate() throws Exception{
+  private void onUpdate() throws Exception {
     String email = Prompt.inputString("변경할 회원 이메일? ");
 
     Member member = this.memberDao.findByEmail(email);

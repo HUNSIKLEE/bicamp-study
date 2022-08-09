@@ -37,10 +37,8 @@ public class App {
 
       loop: while (true) {
 
-        // 메인 메뉴 출력
         printTitle();
         printMenus(menus);
-
         System.out.println();
 
         try {
@@ -100,9 +98,9 @@ public class App {
 
   protected static void printTitle() {
     StringBuilder builder = new StringBuilder();
-    for(String title : App.breadcrumbMenu) {
-      if(!builder.isEmpty()) {
-        builder.append(">");
+    for (String title : App.breadcrumbMenu) {
+      if (!builder.isEmpty()) {
+        builder.append(" > ");
       }
       builder.append(title);
     }
