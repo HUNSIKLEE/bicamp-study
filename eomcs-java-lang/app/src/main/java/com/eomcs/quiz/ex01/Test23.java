@@ -28,7 +28,14 @@ public class Test23 {
 
   static int sumUpDigits(String inputString) {
     int answer = 0;
-    // 이 메서드를 완성하시오!
+
+    for (int i = 0; i < inputString.length(); i++) {
+      char ch = inputString.charAt(i);
+      if(ch >= '1' && ch <= '9') {
+        answer += ch - '0';
+      }
+    }
+
     return answer;
   }
 }

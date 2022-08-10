@@ -43,7 +43,19 @@ public class Test24 {
 
   static int equationSolutions(int L, int R) {
     int result = 0;
-    // 이 메서드를 완성하시오!
+
+    for(int a = L; a <= R; a++) {
+      for( int b = a; b <= R; b++) {
+        if(a * a * a == b * b) {
+          System.out.printf("(%d,%d)\n",a,b);
+          result++;
+        }
+      }
+
+    }
+
+
+
     return result;
   }
 }
