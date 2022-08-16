@@ -23,17 +23,19 @@ public class MemberDao {
   public void load() throws Exception {
     try (BufferedReader in = new BufferedReader(new FileReader(filename))) {
 
+      // 파일에서 JSON 문자열을 모두 읽어 StringBuilder에 담는다.
       StringBuilder strBuilder = new StringBuilder();
       String str;
       while ((str = in.readLine()) != null) {
         strBuilder.append(str);
+      }
 
+      // StringBuilder에 보관된 JSON 문자열을 가지고 Member[] 을 생성한다. 
+      Member[] arr = new Gson().fromJson(strBuilder.toString(), Member[].class);
 
-        Member[] arr = new Gson().fromJson(strBuilder.toString(), Member[].class);
-
-        for(int i = 0; i < arr.length; i++) {
-          list.add(arr[i]);
-        }
+      // Member[] 배열의 저장된 객체를 List 로 옮긴다.
+      for (int i = 0; i < arr.length; i++) {
+        list.add(arr[i]);
       }
     }
   }
