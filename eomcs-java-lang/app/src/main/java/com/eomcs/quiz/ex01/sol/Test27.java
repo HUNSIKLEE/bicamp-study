@@ -1,8 +1,8 @@
-package com.eomcs.quiz.ex01;
+package com.eomcs.quiz.ex01.sol;
 // copyright by codefights.com
 // 
-//양의 정수 배열에서 지정된 정수 값을 찾을 때,
-//첫 번째 찾은 값 이전의 항목들 중에서 짝수의 개수를 알아내라!
+// 양의 정수 배열에서 지정된 정수 값을 찾을 때,
+// 첫 번째 찾은 값 이전의 항목들 중에서 짝수의 개수를 알아내라! 
 // 배열에 해당 값이 없으면 -1을 리턴한다. 
 //
 // 형식:
@@ -30,7 +30,7 @@ non-empty array of positive integers
  */
 //
 // [시간 복잡도]
-// - ?
+// - O(n): n은 배열의 개수이다.
 //
 public class Test27 {
 
@@ -40,15 +40,13 @@ public class Test27 {
 
   static int evenNumbersBeforeFixed(int[] sequence, int fixedElement) {
     int result = 0;
-
-    for(int i =0; i <  sequence.length; i ++) {
+    for (int i = 0; i < sequence.length; i++) {
       if (sequence[i] % 2 == 0 && sequence[i] != fixedElement) {
-        result ++;
+        result++;
       }
       if (sequence[i] == fixedElement) {
         return result;
       }
-
     }
     return -1;
   }

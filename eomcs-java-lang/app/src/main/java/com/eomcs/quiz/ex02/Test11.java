@@ -1,5 +1,9 @@
 package com.eomcs.quiz.ex02;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 // copyright by codefights.com
 // 
 // 삼각형의 세변 길이가 주어질 때,
@@ -34,7 +38,19 @@ public class Test11 {
   }
 
   static boolean rightTriangle(int[] sides) {
-    // 이 메서드를 완성하시오!
-    return false;
+    /*
+    ArrayList<Integer> list =new ArrayList<>();
+    for  (int i : sides) {
+      list.add(i);
+    }
+    Collections.sort(list);
+     */
+    List<Integer> list = Arrays.asList(sides[0], sides[1], sides[2]);
+
+    Collections.sort(list);
+
+
+
+    return list.get(0) *list.get(0) + list.get(1) * list.get(1) == list.get(2) *list.get(2); 
   }
 }

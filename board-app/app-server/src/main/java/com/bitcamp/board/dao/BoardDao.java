@@ -38,6 +38,9 @@ public class BoardDao {
       for (int i = 0; i < arr.length; i++) {
         list.add(arr[i]);
       }
+
+      // 게시글 데이터를 로딩한 후 마지막 게시글 번호를 설정해 둔다.
+      boardNo = arr[arr.length - 1].no;
     }
   }
 
@@ -51,6 +54,17 @@ public class BoardDao {
   public void insert(Board board) {
     board.no = nextNo();
     list.add(board);
+  }
+
+  public boolean update(Board board) {
+    for (int i = 0; i < list.size(); i++) {
+      Board b = list.get(i);
+      if (b.no == board.no) {
+        list.set(i, board);
+        return true;
+      }
+    }
+    return false;
   }
 
   public Board findByNo(int boardNo) {
