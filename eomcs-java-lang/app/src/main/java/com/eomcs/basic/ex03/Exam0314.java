@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class Exam0314 {
 
-  static class MyList<E> implements Iterable<E> {
+  static class MyList<E> implements Iterable<E>{
     Object[] list = new Object[5];
     int size;
 

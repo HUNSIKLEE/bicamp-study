@@ -21,7 +21,8 @@ public class Exam0212 {
 
     // 입력한 값의 타입으로 배열을 받고 싶다면?
     // - 배열의 크기가 작다면 내부에서 배열을 만들어 리턴해준다.
-    String[] arr = set.toArray(new String[0]);
+    //  String[] arr = set.toArray(new String[0]);
+    String[] arr = set.toArray(new String[set.size()]);
 
     for (String value : arr) {
       System.out.print(value + ", ");
