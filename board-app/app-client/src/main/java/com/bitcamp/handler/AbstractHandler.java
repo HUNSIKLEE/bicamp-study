@@ -53,8 +53,6 @@ public abstract class AbstractHandler implements Handler {
       printMenus();
       printBlankLine();
 
-
-
       try {
         int menuNo = Prompt.inputInt(String.format(
             "메뉴를 선택하세요[1..%d](0: 이전) ", menus.length));

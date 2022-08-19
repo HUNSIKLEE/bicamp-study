@@ -34,8 +34,8 @@ public class BoardServlet implements Servlet {
 
       String command = in.readUTF();
       Board board = null;
-      String json = null;
       int no = 0;
+      String json = null;
 
       switch (command) {
         case "findAll":
