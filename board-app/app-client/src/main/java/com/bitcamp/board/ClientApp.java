@@ -16,6 +16,9 @@ public class ClientApp {
     System.out.println("[게시글 관리 클라이언트]");
 
     String ip = "localhost";
+    
+    long ipAddr = 3232235594L;
+    
     int port = 8888;
 
     welcome();
