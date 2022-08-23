@@ -26,7 +26,7 @@ public class Client0310 {
     //    - 원격 윈도우 PC에 서버를 실행하여 접속한다면 정상적으로 동작한다.
     //
     System.out.println("서버와 연결 중...");
-    socket.connect(socketAddress, 3000); // timeout : milliseconds
+    socket.connect(socketAddress, 10000); // timeout : milliseconds
     System.out.println("서버와 연결되었음!");
 
     keyScan.nextLine(); // 사용자가 엔터를 칠 때까지 다음 코드로 이동하지 않는다.

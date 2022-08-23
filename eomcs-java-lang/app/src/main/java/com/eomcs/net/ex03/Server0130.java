@@ -17,7 +17,7 @@ public class Server0130 {
       try (Socket socket = serverSocket.accept();
           DataOutputStream out = new DataOutputStream(socket.getOutputStream());
           DataInputStream in = new DataInputStream(socket.getInputStream())) {
-
+          //데코레이터 
         System.out.println("클라이언트와 연결되었고, 입출력 스트림도 준비되었음!");
         System.out.println("read() 호출 전에 잠깐 대기!");
         keyboard.nextLine();
