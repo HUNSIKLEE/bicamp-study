@@ -47,7 +47,26 @@ public class Test32 {
 
   static boolean tennisSet(int score1, int score2) {
     
+    if(score1 < score2) {
+      int temp = score1;
+      score1 = score2;
+      score2 = temp;
+    }
+    if(score1 > score2) {
+      if((score1 == 6 && score2 < 5 )  || (score1 == 7 && score2 < 7))
+        return true;
+  
     
+  /*  
+      if(score1 > score2) {
+        if((score1 == 6 && score2 < 5 )  || (score1 == 7 && score2 < 7))
+          return true;
+      }else {
+         if((score2 == 6 && score1 < 5 )  || (score2 == 7 && score1 < 7))
+            return true;
+      }*/
+    }
     return false;
   }
 }
+

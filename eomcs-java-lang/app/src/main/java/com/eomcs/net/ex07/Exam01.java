@@ -23,7 +23,8 @@ public class Exam01 {
     //   - 메일 조회, 게시물 변경, 주문 등의 웹 프로그램을 가리킨다.
     //   - 예) index.php, index.jsp, /board/list 등
     //
-    URL url = new URL("https://search.naver.com:443/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=bitcamp");
+   // URL url = new URL("https://search.naver.com:443/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=bitcamp");
+    URL url = new URL("https://search.naver.com:443/search.naver");
 
     // URL 분석
     System.out.printf("프로토콜: %s\n", url.getProtocol());

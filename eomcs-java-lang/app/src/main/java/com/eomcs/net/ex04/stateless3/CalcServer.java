@@ -18,6 +18,7 @@ public class CalcServer {
 
   // 클라이언트와 대화하는 부분을 별도의 코드로 분리하여 실행한다.
   static class RequestHandler extends Thread {
+    // 별로도 실행해야할 소스가 있다면 Thread를 상속받고 run메소드안에 별도로 실행해야할 소스를 넣으면 별도로 실행된다. 
 
     Socket socket;
 

@@ -17,10 +17,10 @@ public class Exam04 {
     System.out.printf("자원경로: %s\n", url.getPath());
 
     System.out.printf("쿼리스트링: %s\n", url.getQuery());// 없으면 null 리턴
-    // Query String
-    // - 자원의 경로(예: /index.php) 다음(물음표 ? 다음)에 오는 파라미터
-    // - 형식: 파라미터명=값&파라미터명=값&파라미터명=값
-    // - 예) sm=top_hty&fbm=1&ie=utf8&query=비트캠프
+//     Query String
+//     - 자원의 경로(예: /index.php) 다음(물음표 ? 다음)에 오는 파라미터
+//     - 형식: 파라미터명=값&파라미터명=값&파라미터명=값
+//     - 예) sm=top_hty&fbm=1&ie=utf8&query=비트캠프
 
   }
 
