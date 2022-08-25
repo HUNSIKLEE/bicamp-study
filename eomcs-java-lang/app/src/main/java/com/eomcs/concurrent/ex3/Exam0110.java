@@ -25,7 +25,7 @@ public class Exam0110 {
     // 스레드 실행
     // => Thread의 서브 클래스는 그냥 인스턴스를 만들어 start()를 호출한다.
     MyThread t = new MyThread();
-    t.start(); // 실행 흐름을 분리한 후 즉시 리턴한다. 비동기로 동작한다.
+    t.start(); // 실행 흐름을 분리한 후 Run() 을 호출하는 동시에 즉시 리턴한다. Run() 실행이 끝날떄까지 기다리지 않는다 [비동기(Anynchronous)로 동작한다.]
 
     // "main" 스레드는 MyThread와 상관없이 병행하여 실행한다.
     for (int i = 0; i < 1000; i++) {

@@ -37,7 +37,7 @@ public class Exam0180 {
 //   ==> Finalizer(T)
 //   ==> Signal Dispatcher(T)
 //   ==> Attach Listener(T)
-//   ==> main(TG)
+//  ==> main(TG)            //main{} 호출.
 //         ==> main(T)
 //   ==> InnocuousThreadGroup(TG)
-//         ==> Common-Cleaner(T)
+//         ==> Common-Cleaner(T) 

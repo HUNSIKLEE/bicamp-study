@@ -21,9 +21,10 @@ public class Exam0170 {
 // JVM의 스레드 계층도:
 // system(TG)
 // => Reference Handler(T)
-// => Finalizer(T)
-// => Signal Dispatcher(T)
-// => Attach Listener(T)
+// => Finalizer(T) // 가비지 컬렉터 같은 역활?
+// => Signal Dispatcher(T)// 어떤신호가 들어오면 전달하는 쓰레드.
+// => Attach Listener(T)// 이벤트가 발생하면 처리하는 쓰레드.
+// => Notification Thread // 
 // => main(TG)
 // ...=> main(T) : main() 메서드를 호출한다.
 // => InnocuousThreadGroup(TG)
