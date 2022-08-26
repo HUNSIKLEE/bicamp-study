@@ -1,4 +1,5 @@
 // 스레드의 생명주기(lifecycle)
+// 생명에서 소멸까지를 생명주기라 한다.
 package com.eomcs.concurrent.ex4;
 
 public class Exam0110 {

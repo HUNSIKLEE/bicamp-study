@@ -12,7 +12,7 @@ import com.bitcamp.servlet.Servlet;
 
 public class ServerAppX {
   public static void main(String[] args) {
-
+    
     // 클라이언트 요청을 처리할 객체 준비
     Hashtable<String,Servlet> servletMap = new Hashtable<>();
     servletMap.put("board", new BoardServlet("board"));
@@ -21,17 +21,19 @@ public class ServerAppX {
     servletMap.put("notice", new BoardServlet("notice"));
     servletMap.put("daily", new BoardServlet("daily"));
     servletMap.put("member", new MemberServlet("member"));
-
     
+
     System.out.println("[게시글 데이터 관리 서버]");
 
     try (ServerSocket serverSocket = new ServerSocket(8888);) {
 
       System.out.println("서버 소켓 준비 완료!");
 
+  
+
       while (true) {
         Socket socket = serverSocket.accept();
-        new Thread(() -> {
+        new Thread (() -> {
             try (Socket socket2 = socket;
                 DataInputStream in = new DataInputStream(socket.getInputStream());
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());) {
@@ -58,8 +60,6 @@ public class ServerAppX {
     } catch (Exception e) {
       e.printStackTrace();
     } // 바깥 쪽 try 
-
     System.out.println("서버 종료!");
   }
-  
 }
