@@ -14,7 +14,7 @@ public class Main {
     if(m < 45) {
       h --;
       m = 60 - (45 -m);
-      if( h < 0) {
+      if( h <0) {
         h = 23;
       }
        System.out.println(h +" " + m);
