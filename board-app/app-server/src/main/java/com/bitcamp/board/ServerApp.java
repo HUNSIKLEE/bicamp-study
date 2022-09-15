@@ -63,53 +63,6 @@ public class ServerApp {
     }
   }
 
-  /*
-  public static void main2(String[] args) {
-
-      System.out.println("[게시글 관리 클라이언트]");
-
-
-      welcome();
-
-
-      //
-
-
-
-
-      // "메인" 메뉴의 이름을 스택에 등록한다.
-      breadcrumbMenu.push("메인");
-
-
-
-      loop: while (true) {
-
-        printTitle();
-        printMenus(menus);
-        System.out.println();
-
-        try {
-          // 메뉴에 진입할 때 breadcrumb 메뉴바에 그 메뉴를 등록한다.
-          breadcrumbMenu.push(menus[mainMenuNo - 1]);
-
-
-
-          breadcrumbMenu.pop();
-
-        } catch (Exception ex) {
-          System.out.println("입력 값이 옳지 않습니다.");
-        }
-
-      } // while
-      Prompt.close();
-
-      System.out.println("종료!");
-    } catch (Exception e) {
-      System.out.println("시스템 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-   */
   static void welcome(DataOutputStream out) throws Exception{
 
     try (StringWriter strOut = new StringWriter();
