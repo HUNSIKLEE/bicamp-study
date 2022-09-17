@@ -27,6 +27,7 @@ public class CalculatorHandler implements Servlet  {
       case "-": out.println(a - b); break;
       case "*": out.println(a * b); break;
       case "/": out.println(a / b); break;
+      default: out.println("해당 연산자가 없습니다.");
     }
     out.println("<h1>하하하하 다음주에 !</h1>");
     out.println("<p>비트캠프 게시판 관리 시스템 프로젝트입니다.</p>");

@@ -15,7 +15,7 @@ public class BoardAddHandler implements Servlet {
 
   private BoardDao boardDao;
 
-  public BoardAddHandler(BoardDao boardDao)  {
+  public BoardAddHandler(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
 
@@ -36,9 +36,6 @@ public class BoardAddHandler implements Servlet {
     board.title = paramMap.get("title");
     board.content = paramMap.get("content");
     board.memberNo = Integer.parseInt(paramMap.get("writerNo"));
-
-
-
 
     if (boardDao.insert(board) == 0) {
       out.println("<p>게시글을 등록할 수 없습니다!</p>");

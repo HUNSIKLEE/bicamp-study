@@ -65,9 +65,9 @@ public class MiniWebServer {
      */
 
     Set<Class<?>> servlets = reflections.get(TypesAnnotated.with(WebServlet.class).asClass());
-    for(Class<?> servlet : servlets) {
+    for (Class<?> servlet : servlets) {
       WebServlet anno = servlet.getAnnotation(WebServlet.class);
-      System.out.printf("%s ---->%s\n",anno.value(), servlet.getName());
+      System.out.printf("%s ---> %s\n", anno.value(), servlet.getName());
     }
   }
 
@@ -101,15 +101,15 @@ public class MiniWebServer {
       Constructor<?> constructor = servlet.getConstructors()[0];
       Parameter[] params = constructor.getParameters();
 
-      if(params.length == 0) { // 생성자 파라미터 갯수가 0인지 비교한다
-        servletMap.put(servletPath, (Servlet)constructor.newInstance()); //
+      if (params.length == 0) { // 생성자의 파라미터가 없다면 
+        servletMap.put(servletPath, (Servlet) constructor.newInstance());
 
-      }else if(params[0].getType() == BoardDao.class) {
-        servletMap.put(servletPath, (Servlet)constructor.newInstance(boardDao));
+      } else if (params[0].getType() == BoardDao.class) {
+        servletMap.put(servletPath, (Servlet) constructor.newInstance(boardDao));
 
-      }else if(params[0].getType() == MemberDao.class) {
-        servletMap.put(servletPath, (Servlet)constructor.newInstance(memberDao));
-      }
+      } else if (params[0].getType() == MemberDao.class) {
+        servletMap.put(servletPath, (Servlet) constructor.newInstance(memberDao));
+      } 
     }
 
     ErrorHandler errorHandler = new ErrorHandler();
@@ -143,11 +143,11 @@ public class MiniWebServer {
           }
           // System.out.println(paramMap);
 
-          Servlet srvlet = servletMap.get(path);
+          Servlet servlet = servletMap.get(path);
 
-          if (srvlet != null ) {
-            srvlet.service(paramMap, printWriter);
-          }else {
+          if (servlet != null) {
+            servlet.service(paramMap, printWriter);
+          } else {
             errorHandler.service(paramMap, printWriter);
           } 
 
