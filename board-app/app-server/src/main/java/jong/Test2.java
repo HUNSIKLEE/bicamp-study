@@ -1,42 +1,51 @@
 package jong;
 import static org.reflections.scanners.Scanners.TypesAnnotated;
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
+import java.net.InetSocketAddress;
+import java.net.URI;
+import java.net.URLDecoder;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.reflections.Reflections;
-import org.reflections.Store;
-import org.reflections.util.QueryFunction;
-import com.bitcamp.servlet.annotation.WebServlet;
+import com.bitcamp.board.dao.BoardDao;
+import com.bitcamp.board.dao.MariaDBBoardDao;
+import com.bitcamp.board.dao.MariaDBMemberDao;
+import com.bitcamp.board.dao.MemberDao;
+import com.bitcamp.board.handler.ErrorHandler;
+import com.bitcamp.servlet.Servlet;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 
 public class Test2 {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
 
-    Reflections reflections = new Reflections("jong.sub");
 
-    Set<Class<?>> servlets = reflections.get(TypesAnnotated.with(JhWebServlet.class).asClass());
-    //System.out.println(servlets); // annotation 붙은 클래스들 가져와서 servlets에 넣어라.
-    for(Class<?> servlet : servlets) {
-      // 서블릿 클래스의 붙은 WebServlet 애노테이션으로부터 path를 꺼낸다.
-      String servletPath = servlet.getAnnotation(JhWebServlet.class).value();
+    String query = "no=1&title=aaaa&content=bbb";
 
-      //System.out.println(servletPath);// anonotation 붙은 클래스들의 벨류값들의 주소를  servletPath에 넣는다. 
-      //결과값은 벨류값 i am aclass ,  b class
-      Constructor<?> constructor = servlet.getConstructors()[0];
-      Parameter[] params = constructor.getParameters();
+    Map<String,String> paramMap = new HashMap<>();
 
-      System.out.println(constructor);//
 
-      //    
-      //    for (Class<?> servlet : servlets) {
-      //      System.out.println(servlets);//
-      //      WebServlet anno = servlet.getAnnotation(WebServlet.class);
-      //      System.out.printf("%s ---> %s\n", anno.value(), servlet.getName());
-      //    }
-      //  }
+    if (query != null && query.length() > 0) { // 예) no=1&title=aaaa&content=bbb
+      String[] entries = query.split("&");
+      //System.out.println(entries);//no=1,title=aaa,contet=bbbb;
 
+      for (String entry : entries) { // 예) no=1
+        String[] kv = entry.split("=");
+        // 웹브라우저가 보낸 파라미터 값은 저장하기 전에 URL 디코딩 한다.
+        paramMap.put(kv[0], URLDecoder.decode(kv[1], "UTF-8"));
+
+        System.out.println(kv[0]);
+      }
     }
+
+
+
   }
 
-
 }
-

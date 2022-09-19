@@ -1,4 +1,4 @@
-package com.bitcamp.board;
+package jong;
 
 import java.io.IOException;
 import java.io.OutputStream;

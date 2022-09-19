@@ -1,4 +1,4 @@
-package com.bitcamp.board.dao;
+package jong.sub;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
