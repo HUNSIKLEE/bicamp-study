@@ -16,13 +16,9 @@ public class Test2 {
     Map<String,Object> objMap = new HashMap<>();
 
     Set<Class<?>> classes = reflections.get(TypesAnnotated.with(JhWebServlet.class).asClass());
-    System.out.println(classes);
     for (Class<?> clazz : classes) {
-      System.out.println(clazz);
       String objName =  clazz.getAnnotation(JhWebServlet.class).value();
-      System.out.println(objName);
       Constructor<?> constructor = clazz.getConstructor(Connection.class);
-      System.out.println(constructor);
       objMap.put(objName, constructor.newInstance());
     }
 
