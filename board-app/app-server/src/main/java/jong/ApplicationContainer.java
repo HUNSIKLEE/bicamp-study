@@ -20,27 +20,29 @@ import com.bitcamp.servlet.annotation.WebServlet;
 
 public class ApplicationContainer {
 
-  Map<String,Object> objMap = new HashMap<>();
+  Map<String, Object> objMap = new HashMap<>();
   Reflections reflections;
   ErrorHandler errorHandler = new ErrorHandler();
 
-  public ApplicationContainer(String packageName)throws Exception {
+  public ApplicationContainer(String packageName) throws Exception {
 
-    reflections  = new Reflections(packageName); 
 
-    Connection con = DriverManager.getConnection(
-        "jdbc:mariadb://localhost:3306/studydb","study","1111");
+    reflections = new Reflections(packageName);
+
+    Connection con =
+        DriverManager.getConnection("jdbc:mariadb://localhost:3306/studydb", "study", "1111");
 
     Set<Class<?>> classes = reflections.get(TypesAnnotated.with(Repository.class).asClass());
     for (Class<?> clazz : classes) {
-      String objName =  clazz.getAnnotation(Repository.class).value();
+      String objName = clazz.getAnnotation(Repository.class).value();
       Constructor<?> constructor = clazz.getConstructor(Connection.class);
       objMap.put(objName, constructor.newInstance(con));
+
     }
 
-    // 서블릿 객체를 찾아 맵에 보관한다. 
+    // 서블릿 객체를 찾아 맵에 보관한다.
     Set<Class<?>> servlets = reflections.get(TypesAnnotated.with(WebServlet.class).asClass());
-    for(Class<?> servlet : servlets) {
+    for (Class<?> servlet : servlets) {
       String servletPath = servlet.getAnnotation(WebServlet.class).value();
 
       Constructor<?> constructor = servlet.getConstructors()[0];
@@ -50,19 +52,19 @@ public class ApplicationContainer {
         objMap.put(servletPath, constructor.newInstance());
 
       } else {
-        Object argumnet = findObject(objMap,params[0].getType());
-        if(argumnet != null) { 
+        Object argumnet = findObject(objMap, params[0].getType());
+        if (argumnet != null) {
           objMap.put(servletPath, constructor.newInstance(argumnet));
         }
       }
     }
   }
 
-  public  void execute(String path, String query, PrintWriter out) throws Exception {
+  public void execute(String path, String query, PrintWriter out) throws Exception {
 
     // query string을 분석하여 파라미터 값을 맵에 저장한다.
 
-    Map<String,String> paramMap = new HashMap<>();
+    Map<String, String> paramMap = new HashMap<>();
     if (query != null && query.length() > 0) { // 예) no=1&title=aaaa&content=bbb
       String[] entries = query.split("&");
       for (String entry : entries) { // 예) no=1
@@ -73,20 +75,21 @@ public class ApplicationContainer {
     // System.out.println(paramMap);
 
     // 경로에 해당하는 서블릿 객체를 찾아 실행한다.
-    Servlet servlet =  (Servlet) objMap.get(path);
+    Servlet servlet = (Servlet) objMap.get(path);
     if (servlet != null) {
       servlet.service(paramMap, out);
     } else {
       errorHandler.service(paramMap, out);
-    } 
-  }// execute() 끝! 
+    }
+  }// execute() 끝!
+
   private static Object findObject(Map<String, Object> objMap, Class<?> type) {
 
     Collection<Object> values = objMap.values();
 
-    for (Object value: values) {
-      if(type.isInstance(value)) { 
-        return value; 
+    for (Object value : values) {
+      if (type.isInstance(value)) {
+        return value;
       }
     }
     return null;
