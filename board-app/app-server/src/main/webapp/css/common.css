@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
-body{
+body {
   font-size: small;
 }
 
-h1{
+h1 {
   border-left-style: solid;
   border-left-width: 20px;
   border-left-color: red;
