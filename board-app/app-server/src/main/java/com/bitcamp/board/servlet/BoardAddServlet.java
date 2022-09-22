@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.bitcamp.board.dao.BoardDao;
 import com.bitcamp.board.domain.Board;
 
 @WebServlet(value="/board/add")
@@ -14,6 +15,11 @@ public class BoardAddServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
+  BoardDao boardDao;
+  @Override
+  public void init() throws ServletException {
+    boardDao = (BoardDao)  this.getServletContext().getAttribute("boardDao");
+  }
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -32,13 +38,14 @@ public class BoardAddServlet extends HttpServlet {
     out.println("<body>");
     out.println("<h1>게시글 입력</h1>");
 
+
     try {
       Board board = new Board();
       board.title = req.getParameter("title");
       board.content = req.getParameter("content");
       board.memberNo = Integer.parseInt(req.getParameter("writerNo"));
 
-      if (AppInitServlet.boardDao.insert(board) == 0) {
+      if (boardDao.insert(board) == 0) {
         out.println("<p>게시글을 등록할 수 없습니다!</p>");
 
       } else {

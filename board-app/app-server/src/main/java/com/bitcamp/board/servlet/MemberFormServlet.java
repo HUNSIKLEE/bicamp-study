@@ -7,11 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.bitcamp.board.dao.MemberDao;
 
 @WebServlet(value="/member/form")
 public class MemberFormServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
+  MemberDao memberDao;
 
+
+  @Override
+  public void init() throws ServletException {
+    memberDao = (MemberDao)  this.getServletContext().getAttribute("memberDao");
+  }
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
