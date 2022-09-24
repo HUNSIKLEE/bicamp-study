@@ -26,9 +26,5 @@ public class ContextLoaderListener implements ServletContextListener {
     }catch (Exception e) {
       e.printStackTrace();
     }
-
-
   }
-
-
 }
