@@ -7,7 +7,7 @@
 <title>bitcamp</title>
 </head>
 <body>
-	<h1>게시글 입력 JSP</h1>
+	<h1>게시글 입력 JSP+ Servlet</h1>
 
 	<form action='add'>
 		<table border='1'>

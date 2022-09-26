@@ -3,11 +3,7 @@
 <%@ page import="com.bitcamp.board.dao.BoardDao"%>
 <%@ page import="com.bitcamp.board.domain.Board"%>
 
-<%!BoardDao boardDao;
 
-  public void jspInit() {
-    boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
-  }%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +17,9 @@ tr:hover {
 </style>
 </head>
 <body>
-	<h1>게시글-JSP</h1>
+	<h1>게시글-JSP+ Servlet</h1>
 	<a href='form'>새 글</a>
-	<%
-	try {
-	  List<Board> boards = boardDao.findAll();
-	%>
+
 	<table border='1'>
 		<tr>
 			<th>번호</th>
@@ -35,9 +28,10 @@ tr:hover {
 			<th>작성자</th>
 			<th>등록일</th>
 		</tr>
-		<%
-		for (Board board : boards) {
-		%>
+<%
+List<Board> boards = (List<Board>) request.getAttribute("boards");
+for (Board board : boards) {
+%>
 		<tr>
 			<td><%=board.no%></td>
 			<td><a href='detail?no=<%=board.no%>'><%=board.title%></a></td>
@@ -49,15 +43,8 @@ tr:hover {
 		}
 		%>
 	</table>
-	<%
-	} catch (Exception e) {
-	%>
-	<p>실행 중 오류 발생!</p>
-	<%
-	}
-	%>
 	<p>
-		<a href='/app'>메인</a>
+		<a href='../'>메인</a>
 	</p>
 </body>
 </html>
