@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page import="com.bitcamp.board.dao.BoardDao"%>
-<%@ page import="com.bitcamp.board.domain.Board"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@ tr:hover {
 </style>
 </head>
 <body>
-	<h1>게시글-JSP+ Servlet</h1>
+	<h1>게시글-JSP+ Servlet + EL +JSTL</h1>
 	<a href='form'>새 글</a>
 
 	<table border='1'>
@@ -28,20 +26,15 @@ tr:hover {
 			<th>작성자</th>
 			<th>등록일</th>
 		</tr>
-<%
-List<Board> boards = (List<Board>) request.getAttribute("boards");
-for (Board board : boards) {
-%>
+<c:forEach items="${boards}" var="board">
 		<tr>
-			<td><%=board.no%></td>
-			<td><a href='detail?no=<%=board.no%>'><%=board.title%></a></td>
-			<td><%=board.viewCount%></td>
-			<td><%=board.memberNo%></td>
-			<td><%=board.createdDate%></td>
+			<td>${board.no}</td>
+			<td><a href='detail?no=${board.no}'>${board.title}</a></td>
+			<td>${board.viewCount}</td>
+			<td>${board.memberNo}</td>
+			<td>${board.createdDate}</td>
 		</tr>
-		<%
-		}
-		%>
+</c:forEach>
 	</table>
 	<p>
 		<a href='../'>메인</a>

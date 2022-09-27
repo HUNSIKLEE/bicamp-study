@@ -35,11 +35,3 @@
 </body>
 </html>
 
-
-<%! 
-
-MemberDao memberDao;
-  public void jpsInit() {
-    memberDao = (MemberDao)  this.getServletContext().getAttribute("memberDao");
-  }
-%>
