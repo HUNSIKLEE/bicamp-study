@@ -4,25 +4,24 @@ import java.sql.Date;
 
 public class Board {
 
-  public int no;
-  public String title;
-  public String content;
-  public int memberNo;
-  public String password;
-  public int viewCount;
-  public Date createdDate;
+  private int no;
+  private String title;
+  private String content;
+  private String password;
+  private int viewCount;
+  private Date createdDate;
+  private Member writer;
 
-  @Override
-  public String toString() {
-    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", memberNo="
-        + memberNo + ", password=" + password + ", viewCount=" + viewCount + ", createdDate="
-        + createdDate + "]";
-
-
-  }
   // 프로퍼티(setter/getter): no(프로퍼티명 겟과 셋을뺸 첫번째 알파벳으로 시작함 )
   // 프로퍼티 이름과 필드명 이름 혼동하지 마라.
   // 필드명과 프로퍼티는 다르다.프로퍼티는 겟터셋터를 통칭해서 일컷는말.
+
+  @Override
+  public String toString() {
+    return "Board [no=" + no + ", title=" + title + ", content=" + content + ", password="
+        + password + ", viewCount=" + viewCount + ", createdDate=" + createdDate + ", writer="
+        + writer + "]";
+  }
 
   public int getNo() {
     return no;
@@ -48,14 +47,6 @@ public class Board {
     this.content = content;
   }
 
-  public int getMemberNo() {
-    return memberNo;
-  }
-
-  public void setMemberNo(int memberNo) {
-    this.memberNo = memberNo;
-  }
-
   public String getPassword() {
     return password;
   }
@@ -79,6 +70,15 @@ public class Board {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+  public Member getWriter() {
+    return writer;
+  }
+
+  public void setWriter(Member writer) {
+    this.writer = writer;
+  }
+
 
 
 }

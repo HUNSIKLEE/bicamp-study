@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${board.memberNo}</td>
+				<td>${board.writer.name}</td>
 			</tr>
 			<tr>
 				<th>등록일</th>

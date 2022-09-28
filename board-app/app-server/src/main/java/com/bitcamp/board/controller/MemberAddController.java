@@ -27,9 +27,9 @@ public class MemberAddController extends HttpServlet{
       throws ServletException, IOException {
     try {
       Member member = new Member();
-      member.name = request.getParameter("name");
-      member.email = request.getParameter("email");
-      member.password = request.getParameter("password");
+      member.setName(request.getParameter("name"));
+      member.setEmail(request.getParameter("email"));
+      member.setPassword(request.getParameter("password"));
 
       if (memberDao.insert(member) == 0) {
 
