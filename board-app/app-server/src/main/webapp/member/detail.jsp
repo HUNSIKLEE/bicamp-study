@@ -13,7 +13,7 @@
 	<%
 	Member member = (Member)request.getAttribute("member");
 	%>
-	<form action='update'>
+	<form action='update' method="post">
 		<table border='1'>
 			<tr>
 				<th>번호</th>

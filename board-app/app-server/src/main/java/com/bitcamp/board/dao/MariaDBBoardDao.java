@@ -98,7 +98,8 @@ public class MariaDBBoardDao implements BoardDao {
             + "  m.mno,"
             + "  m.name "
             + "  from app_board b"
-            + "  join app_member m on b.mno = m.mno");
+            + "  join app_member m on b.mno = m.mno"
+            + " order by bno desc");
         ResultSet rs = pstmt.executeQuery()) {
       // 실행이 되는지 DB클라이언트에서 확인하고 넣을것.
       ArrayList<Board> list = new ArrayList<>();

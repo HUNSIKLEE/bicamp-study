@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bitcamp.board.domain.Member;
 
-@WebFilter("*")
-public class LoginCheckFilter implements Filter{
+@WebFilter("/member/*")
+public class AdminCheckFilter implements Filter{
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    System.out.println("LoginCheckFilter.init() 실행! ");
+    System.out.println("AdminCheckFilter.init() 실행! ");
   }
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    System.out.println("LoginCheckFilter.doFilter() 실행!");
+    System.out.println("AdminCheckFilter.foFilter() 실행!");
     // 요청 URL을 통해 로그인 여부를 검사할 지 결정한다.
     // 요청 URL은 HTTP 프로토콜과 관련된 값이다.
     // ServletRequest 타입에는 HTTP 프로토콜과 관련된 기능을 다룰 수 있는 메서드가 없다.
@@ -35,22 +35,11 @@ public class LoginCheckFilter implements Filter{
     // 응답 가능에 대해서도 HTTP 관련 메서드를 사용하고 싶다면 형변환 하라!
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-    // 요청 URL에서 서블릿 경로만 추출한다.
-    // ex) 요청 URL: http://localhost:8888/app/board/add?title=aaa&content=bbb
-    //     서블릿 경로: /board/add <== 웹 어플리케이션 경로는 뺀다. 
-    String servletPath = httpRequest.getServletPath();
-    // System.out.println(servletPath);
-
-    // 콘텐트를 등록,변경,삭제 하는 경우 로그인 여부를 검사한다.
-    if (servletPath.endsWith("add") ||
-        servletPath.endsWith("update")||
-        servletPath.endsWith("delete")) {
-
-      Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
-      if(loginMember == null) { // 로그인 하지 않았다면
-        httpResponse.sendRedirect(httpRequest.getContextPath() + "/auth/form.jsp");
-        return;
-      }
+    Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
+    if(loginMember == null || // 로그인이 안됐거나
+        !loginMember.getEmail().equals("admin@test.com")) { // 관리자가 아니라면
+      httpResponse.sendRedirect(httpRequest.getContextPath() + "/"); // 보내 버린다!
+      return;
     }
     // 다음 필터를 실행한다.
     // 다음으로 실행할 필터가 없다면 원래 목적지인 서블릿이 실행될 것이다.

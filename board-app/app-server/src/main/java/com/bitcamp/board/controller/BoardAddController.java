@@ -24,16 +24,22 @@ public class BoardAddController extends HttpServlet{
   }
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
+      // URL 디코딩 한 바이트를 UTF-16으로 변환하기 전에
+      // 그 바이트의 characterset이 무엇인지 알려줘야 한다.
+      // 안 알려주면 그 디코딩 바이트가 ASCII 코드라고 간주한다.
+      // UTF-8 코드를 ASCII 코드라고 잘못 판단하니까 UTF-16으로 바꿀 때 오류가 발생하는 것이다.
+      // 물론 영어나 숫자는 ASCII코드와 UTF-8과 같기 떄문에 UTF-16으로 변환하더라도 문제가 되지않는다.
+      // 그러나 한글은 3바이트를 UTF-8 코드의 3바이트를 묶어서 UTF-16 2바이트로 변환해야 하기 떄문이다.
+      // 영어라고 간주하고 각각의 1바이트를 2바이트로 변환하니까 문제가 발생하는 것이다. 
+      // get에서는 깔끔함 post 에서만 이런 상황이 발생한다.
+      request.setCharacterEncoding("UTF-8");
       Board board = new Board(); 
       board.setTitle(request.getParameter("title"));
       board.setContent(request.getParameter("content"));
 
-      // 로그인 사용자 정보는 파라미터로 받아서는 안된다.
-      // 반드시 세션에서 꺼내 써야 한다.
-      // 왜? 클라이언트가 로그인 사용자 정보가 아닌 다른 사용자 정보를 보낼 수 있기 떄문이다.
       Member loginMember = (Member) request.getSession().getAttribute("loginMember");
       board.setWriter(loginMember);
 
@@ -42,47 +48,11 @@ public class BoardAddController extends HttpServlet{
         throw new Exception("게시글 등록 실패!");
       }
 
-      // Refresh
-      // 응답 프로토콜 
-      // HTTP/1.1 302
-      // Location: list
-      // Content-Length: 0
-      // Date: Mon, 26 Sep 2022 05:21:25 GMT
-      // Keep-Alive: timeout=20
-      // Connection: keep-alive
-      // 컨텐트가 있고, 200이다.
-      // 자바코드 : 
-      //   response.setHeader("Refresh", "1;url=list");// 응답헤더에 refresh에서 삽입 할수 있다.
-      response.setContentType("text/html;charset=UTF-8");// JSP가 출력할 콘텐트의 MIME 타입 설정
-      request.getRequestDispatcher("/board/add.jsp").include(request, response); // JSP를 실행한 후 리턴된다.
-
-
-
-      // Redirect
-      // 클라이언트에게 콘텐트를 보내지 않는다.
-      // 응답 프로토콜
-      // HTTP/1.1 302       <== 응답 상태 코드 
-      // Location: list     <== 자동으로 요청할 URL
-      // Content-Length: 0  <== 콘텐트는 보내지 않는다.
-      // Date: Mon, 26 Sep 2022 05:21:25 GMT
-      // Keep-Alive: timeout=20
-      // Connection: keep-alive
-
-      // 컨텐트가 없다. 302다.
-      // 자바 코드 : 
-      // response.sendRedirect("list");
-
-
+      response.sendRedirect("list");
 
     }catch (Exception e) {
-      // 예외가 발생하면 예외를 처리하는 JSP에게 UI 생성을 위임한다.
       request.setAttribute("exception", e);
       request.getRequestDispatcher("/error.jsp").forward(request, response); 
-
-      // JSP를 실행하기 전에 오류 ServletRequest 보관소에 오류 정보를 담는다.
-
-      // forward(): 예외가 발생하면 기존의 출력 내용을 모두 버린다.
-      // JSP에게 처음부터 새로 출력하게 전권을 위임한다. 
 
 
     }
