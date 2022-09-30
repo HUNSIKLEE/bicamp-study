@@ -7,9 +7,9 @@
 <title>bitcamp</title>
 </head>
 <body>
-	<h1>게시글 입력 JSP+ Servlet </h1>
+	<h1>게시글 입력 JSP+ Servlet</h1>
 
-	<form action='add' method="post">
+	<form action='add' method="post" enctype="multipart/form-data">
 		<table border='1'>
 			<tr>
 				<th>제목</th>
@@ -18,6 +18,10 @@
 			<tr>
 				<th>내용</th>
 				<td><textarea name='content' rows='10' cols='60'></textarea></td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<td><input name='files' type="file" multiple></td>
 			</tr>
 		</table>
 		<p>

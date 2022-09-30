@@ -1,6 +1,7 @@
 package com.bitcamp.board.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Board {
 
@@ -15,6 +16,10 @@ public class Board {
   // 프로퍼티(setter/getter): no(프로퍼티명 겟과 셋을뺸 첫번째 알파벳으로 시작함 )
   // 프로퍼티 이름과 필드명 이름 혼동하지 마라.
   // 필드명과 프로퍼티는 다르다.프로퍼티는 겟터셋터를 통칭해서 일컷는말.
+
+
+  // 첨부파일 정보를 저장할 필드 
+  private List<AttachedFile> attachedFiles;
 
   @Override
   public String toString() {
@@ -77,6 +82,14 @@ public class Board {
 
   public void setWriter(Member writer) {
     this.writer = writer;
+  }
+
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
   }
 
 
