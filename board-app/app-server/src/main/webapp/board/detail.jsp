@@ -41,6 +41,6 @@
 			<a href='delete?no=${board.no}'>삭제</a>
 		</p>
 	</form>
-
+    
 </body>
 </html>
