@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.bitcamp.board.dao.MemberDao;
 import com.bitcamp.board.domain.Member;
+import com.bitcamp.board.service.MemberService;
 
 @WebServlet("/member/list")
 public class MemberListController extends HttpServlet {
@@ -17,18 +17,18 @@ public class MemberListController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
 
-  MemberDao memberDao;
+  MemberService memberService;
 
   @Override
   public void init() {
-    memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
+    memberService = (MemberService) this.getServletContext().getAttribute("memberService");
   }
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     try {
-      List<Member> members = memberDao.findAll();
+      List<Member> members = memberService.list();
 
       req.setAttribute("members", members);
 

@@ -8,18 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.bitcamp.board.dao.MemberDao;
 import com.bitcamp.board.domain.Member;
+import com.bitcamp.board.service.MemberService;
 
 @WebServlet("/auth/login")
 public class LoginController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  MemberDao memberDao;
+  MemberService memberService;
 
   @Override
   public void init() {
-    memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
+    memberService = (MemberService) this.getServletContext().getAttribute("memberService");
   }
 
   @Override
@@ -29,7 +29,7 @@ public class LoginController extends HttpServlet {
       String email = request.getParameter("email");
       String password = request.getParameter("password");
 
-      Member member = memberDao.findByEmailPassword(email, password);
+      Member member = memberService.get(email, password);
 
       if(member != null) {
         HttpSession session = request.getSession(); // 요청한 클라이언트의 전용HttpSession 보관소를 얻는다.

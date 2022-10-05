@@ -118,16 +118,16 @@ public class MariaDBMemberDao implements MemberDao {
       return list;
     }
   }
+
   @Override
-  public Member findByEmailPassword(String email, String password) throws Exception{
+  public Member findByEmailPassword(String email, String password) throws Exception {
     try (PreparedStatement pstmt = con.prepareStatement(
         "select mno,name,email,cdt from app_member where email=? and pwd=sha2(?,256)")) {
 
       pstmt.setString(1, email);
       pstmt.setString(2, password);
 
-      try (ResultSet rs = pstmt.executeQuery()){
-
+      try (ResultSet rs = pstmt.executeQuery()) {
         if (!rs.next()) {
           return null;
         }
