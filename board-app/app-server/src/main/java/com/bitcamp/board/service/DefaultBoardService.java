@@ -4,35 +4,53 @@ import java.util.List;
 import com.bitcamp.board.dao.BoardDao;
 import com.bitcamp.board.domain.AttachedFile;
 import com.bitcamp.board.domain.Board;
+import com.bitcamp.transaction.TransactionManager;
+import com.bitcamp.transaction.TransactionStatus;
 
 public class DefaultBoardService implements BoardService {
+  TransactionManager txManager;
   BoardDao boardDao;
 
-  public DefaultBoardService(BoardDao boardDao) {
+  public DefaultBoardService(BoardDao boardDao, TransactionManager txManager) {
     this.boardDao = boardDao;
+    this.txManager = txManager;
   }
 
   @Override
   public void add(Board board) throws Exception {
-    // 1) 게시글 등록
-    if (boardDao.insert(board) == 0) {
-      throw new Exception("게시글 등록 실패!");
-    }
+    TransactionStatus status = txManager.getTransacrtion();
+    try {
+      // 1) 게시글 등록
+      if (boardDao.insert(board) == 0) {
+        throw new Exception("게시글 등록 실패!");
+      }
 
-    // 2) 첨부파일 등록
-    boardDao.insertFiles(board);
+      // 2) 첨부파일 등록
+      boardDao.insertFiles(board);
+      txManager.commit(status);
+    } catch(Exception e) {
+      txManager.rollback(status);
+      throw e;
+    } 
   }
 
   @Override
   public boolean update(Board board) throws Exception {
-    // 1) 게시글 변경
-    if (boardDao.update(board) == 0) {
-      return false;
-    }
-    // 2) 첨부파일 추가
-    boardDao.insertFiles(board);
+    TransactionStatus status = txManager.getTransacrtion();
+    try {
+      // 1) 게시글 변경
+      if (boardDao.update(board) == 0) {
+        return false;
+      }
+      // 2) 첨부파일 추가
+      boardDao.insertFiles(board);
 
-    return true;
+      txManager.commit(status);
+      return true;
+    }catch (Exception e) {
+      txManager.rollback(status);
+      throw e;
+    }
   }
 
   @Override
@@ -47,11 +65,21 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public boolean delete(int no) throws Exception {
-    // 1) 첨부파일 삭제
-    boardDao.deleteFiles(no);
+    TransactionStatus status = txManager.getTransacrtion();
+    try {
+      // 1) 첨부파일 삭제
+      boardDao.deleteFiles(no);
 
-    // 2) 게시글 삭제
-    return boardDao.delete(no) > 0;
+      boolean result = boardDao.delete(no) > 0;
+
+      txManager.commit(status);
+      // 2) 게시글 삭제
+      return result;
+    }catch (Exception e) {
+      txManager.rollback(status);
+      throw e;
+
+    }
   }
 
   @Override
