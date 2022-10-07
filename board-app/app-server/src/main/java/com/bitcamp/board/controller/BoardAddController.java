@@ -16,7 +16,7 @@ import com.bitcamp.board.domain.AttachedFile;
 import com.bitcamp.board.domain.Board;
 import com.bitcamp.board.domain.Member;
 import com.bitcamp.board.service.BoardService;
-
+   
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10) 
 @WebServlet("/board/add")
 public class BoardAddController extends HttpServlet {
