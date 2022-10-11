@@ -14,9 +14,6 @@ public class Member {
   public String toString() {
     return "Member [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password
         + ", createdDate=" + createdDate + "]";
-
-
-
   }
 
   public int getNo() {
@@ -58,4 +55,6 @@ public class Member {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+
 }
