@@ -10,28 +10,27 @@ import com.bitcamp.board.dao.BoardDao;
 import com.bitcamp.board.domain.AttachedFile;
 import com.bitcamp.board.domain.Board;
 
-
-@Service // 서브시 역할을 수행하는 객체에  붙이는 애노테이션
+@Service // 서비스 역할을 수행하는 객체에 붙이는 애노테이션
 public class DefaultBoardService implements BoardService {
 
   PlatformTransactionManager txManager; 
   BoardDao boardDao;
 
   public DefaultBoardService(BoardDao boardDao, PlatformTransactionManager txManager) {
-    System.out.println("DefaultBoardService() 호출함!");
+    System.out.println("DefaultBoardService() 호출됨!");
     this.boardDao = boardDao;
     this.txManager = txManager;
   }
 
   @Override
   public void add(Board board) throws Exception {
-
+    // 트랜잭션 동작 방법을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    // explicitly setting the transaction name is something that can be done only programmatically
     def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
     TransactionStatus status = txManager.getTransaction(def);
+
     try {
       // 1) 게시글 등록
       if (boardDao.insert(board) == 0) {
@@ -50,11 +49,11 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public boolean update(Board board) throws Exception {
-
+    // 트랜잭션 동작 방법을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    // explicitly setting the transaction name is something that can be done only programmatically
-    def.setName("SomeTxName");
+    def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
     TransactionStatus status = txManager.getTransaction(def);
 
     try {
@@ -86,12 +85,13 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public boolean delete(int no) throws Exception {
-
+    // 트랜잭션 동작 방법을 정의한다.
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    // explicitly setting the transaction name is something that can be done only programmatically
-    def.setName("SomeTxName");
+    def.setName("tx1");
     def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
     TransactionStatus status = txManager.getTransaction(def);
+
     try {
       // 1) 첨부파일 삭제
       boardDao.deleteFiles(no);

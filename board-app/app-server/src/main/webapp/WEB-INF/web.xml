@@ -12,7 +12,6 @@
     
     <display-name>board-app</display-name>
     
-
 <!--  
     <servlet>
       <servlet-name>DispatcherServlet</servlet-name>

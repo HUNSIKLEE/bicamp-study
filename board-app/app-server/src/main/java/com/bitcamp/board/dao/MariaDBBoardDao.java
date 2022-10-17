@@ -11,14 +11,13 @@ import com.bitcamp.board.domain.AttachedFile;
 import com.bitcamp.board.domain.Board;
 import com.bitcamp.board.domain.Member;
 
-@Repository // DAO 역할을 수행하는 객체에 붙이는 에노테이션
+@Repository // DAO 역할을 수행하는 객체에 붙이는 애노테이션
 public class MariaDBBoardDao implements BoardDao {
 
   DataSource ds;
 
   public MariaDBBoardDao(DataSource ds) {
-    System.out.println("MariaDBBoardDao() 호출됨");
-
+    System.out.println("MariaDBBoardDao() 호출됨!");
     this.ds = ds;
   }
 

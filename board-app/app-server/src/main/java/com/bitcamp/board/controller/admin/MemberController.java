@@ -1,4 +1,4 @@
-package com.bitcamp.board.controller;
+package com.bitcamp.board.controller.admin;
 
 import java.util.Map;
 import org.springframework.stereotype.Controller;
@@ -8,37 +8,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.bitcamp.board.domain.Member;
 import com.bitcamp.board.service.MemberService;
-@Controller // 페이지 컨트롤러에 붙이는 에노테이션
-@RequestMapping("/member")
+
+@Controller
+@RequestMapping("/member/")
 public class MemberController {
 
   MemberService memberService;
-  public MemberController( MemberService memberService) {
+
+  public MemberController(MemberService memberService) {
+    System.out.println("MemberController() 호출됨!");
     this.memberService = memberService;
   }
 
-  @GetMapping("form") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 
+  @GetMapping("form")
   public void form() throws Exception {
   }
 
-  @PostMapping("add") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 
+  @PostMapping("add")
   public String add(Member member) throws Exception {
     memberService.add(member);
     return "redirect:list";
   }
 
-
-  @GetMapping("list") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 
+  @GetMapping("list")
   public void list(Model model) throws Exception {
-    // 프론트 컨트롤러가 건네 준 Model 객체에 작업결과를 담아 두면
+    // 프론트 컨트롤러가 건네준 Model 객체에 작업 결과를 담아 두면 
     // 핸들러 호출이 끝났을 때 JSP 를 실행하기 전에
-    // 먼저 Model 객체에 담아둔 값을 ServletRequest 보관소로 옮긴다. 
+    // 먼저 Model 객체에 담아둔 값을 ServletRequest 보관소로 옮긴다.
     model.addAttribute("members", memberService.list());
   }
 
-
-  @GetMapping("detail") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 @Override
-  public void detail(int no,Map map) throws Exception {
+  @GetMapping("detail")
+  public void detail(int no, Map map) throws Exception {
     Member member = memberService.get(no);
 
     if (member == null) {
@@ -46,10 +47,9 @@ public class MemberController {
     }
 
     map.put("member", member);
-
   }
 
-  @PostMapping("update") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 
+  @PostMapping("update")
   public String update(Member member) throws Exception {
     if (!memberService.update(member)) {
       throw new Exception("회원 변경 오류입니다!");
@@ -58,14 +58,13 @@ public class MemberController {
     return "redirect:list";
   }
 
-  @GetMapping("delete") // 요청이 들어 왔을 때 호출될 메서드에 붙이는 에노테이션 
+  @GetMapping("delete")
   public String delete(int no) throws Exception {
     if (!memberService.delete(no)) {
       throw new Exception("회원 삭제 오류입니다!");
     }
 
     return "redirect:list";
-
   }
 }
 

@@ -22,11 +22,11 @@ public class AdminCheckFilter implements Filter {
   @Override
   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
       throws IOException, ServletException {
-    System.out.println("AdminCheckFilter.doFilter() 실행!");
 
     HttpServletRequest httpRequest = (HttpServletRequest) request;
     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+    System.out.println("AdminCheckFilter.doFilter() 실행!");
     Member loginMember = (Member) httpRequest.getSession().getAttribute("loginMember");
     if (loginMember == null || // 로그인이 안됐거나 
         !loginMember.getEmail().equals("admin@test.com")) { // 관리자가 아니라면

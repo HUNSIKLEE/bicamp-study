@@ -5,16 +5,15 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
-import org.springframework.stereotype.Repository;
 import com.bitcamp.board.domain.Member;
 
-@Repository // DAO 역할을 수행하는 객체에 붙이는 에노테이
+//@Repository // DAO 역할을 수행하는 객체에 붙이는 애노테이션
 public class MariaDBMemberDao implements MemberDao {
 
   DataSource ds;
 
   public MariaDBMemberDao(DataSource ds) {
-    System.out.println("MariaDBMemberDao() 호출됨");
+    System.out.println("MariaDBMemberDao() 호출됨!");
     this.ds = ds;
   }
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.bitcamp.board.dao.MemberDao;
 import com.bitcamp.board.domain.Member;
 
-@Service // 서브시 역할을 수행하는 객체에  붙이는 애노테이션
+@Service // 서비스 역할을 수행하는 객체에 붙이는 애노테이션
 public class DefaultMemberService implements MemberService {
   MemberDao memberDao;
 
