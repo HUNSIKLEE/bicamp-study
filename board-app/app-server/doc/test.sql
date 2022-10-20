@@ -63,3 +63,18 @@ VALUES
   (10, 10, '농구모임이 거절 되었습니다.', '2022-10-06 00:00:00', 1);
 
   
+
+
+      멤버 신고     신고번호(PK) 신고자회원번호(FK) 피신고자회원번호(FK) 신고사유번호(FK) 신고일 처리내용 처리일
+  INSERT INTO `member_tatlle` (`mtno`, `mnoee`, `mnoer`, `trno`, `tdt`, `cont`, `comdt`) VALUES (1, 2, 1, 1, '2022-10-06 00:00:00', '승인되지 않았습니다.', '2022-10-06 16:13:33');
+  
+          공지           첨부파일번호(PK)  파일경로   게시글번호(FK)
+  INSERT INTO `notice_file` (`nfno`, `filepath`, `nno`) VALUES (1, 'http://image.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
+
+      모임 댓글               모임댓글번호(PK) 회원번호(FK) 모임 일련번호(FK) 내용 등록일 
+  INSERT INTO `party_comment` (`pcno`, `mno`, `pno`, `cont`, `cdt`) VALUES (1, 1, 2, '참여하고싶어요!', '2022-10-06 00:00:00');
+  
+       모임 첨부파일         모임첨부번호(PK)  파일경로   모임 일련번호(FK)
+  INSERT INTO `party_file` (`pfno`, `filepath`, `pno`) VALUES (1, 'http://im age.auction.co.kr/itemimage/1a/c2/ec/1ac2ec2fd6.jpg', 1);
+  
+  
