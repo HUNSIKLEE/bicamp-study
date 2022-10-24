@@ -7,13 +7,19 @@ plugins {
     
 }
 
-repositories {
+repositories { 
     mavenCentral()
 }
 
 dependencies {
       // spring-webmvc 관련 라이브러리 
-     implementation 'org.springframework.boot:spring-boot-starter-web'
+     implementation ('org.springframework.boot:spring-boot-starter-web') {
+      exclude group:'org.springframework.boot', module:'spring-boot-starter-tomcat'     
+     }
+     
+     // Undertow 서블릿 컨테이션 
+     implementation 'org.springframework.boot:spring-boot-starter-undertow'
+     
      //Thymeleaf 관련 라이브러리
      implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
       // spring-jdbc 관련 라이브러리 
@@ -33,13 +39,13 @@ dependencies {
 
 //    implementation project(':app-common')
 
+}
 
 // 단위 테스트에 사용할 라이브러리를 지정한다.
 tasks.named('test') {
   useJUnitPlatform()
 }
 
-}
 
 // gradle build를 실행하여 배포 파일을 생성할 때 사용 할 이름.
 // 예) com.bitcamp.board.0.0.1-SNAPSHOT.jar 이런식으로 
