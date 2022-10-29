@@ -22,7 +22,7 @@ public interface BoardService {
 
   boolean deleteAttachedFile(int fileNo) throws Exception;
 
-}
+}  
 
 
 
