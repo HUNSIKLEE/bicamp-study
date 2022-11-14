@@ -52,6 +52,13 @@ public class AuthController {
     }
     response.addCookie(cookie); 
 
+    //    if(member != null) {
+    //      ModelAndView mv = new ModelAndView("redirect:/");
+    //      mv.addObject("member", member);
+    //      return mv;
+    //    }
+
+
     ModelAndView mv = new ModelAndView("auth/loginResult");
     mv.addObject("member", member);
     return mv;
