@@ -4,8 +4,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.14.RELEASE'
     id 'java'
     id 'eclipse'
-    
-}
+    id 'application'
+`}
 
 repositories { 
     mavenCentral()
@@ -26,10 +26,16 @@ dependencies {
      implementation 'org.springframework.boot:spring-boot-starter-jdbc'
       // mybatis-spring 관련 라이브러리 
      implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+     
+     
       // maridb jdbc driver 관련 라이브러리 
-     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    // runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+      // mysql jdbc driver 관련 라이브러리 
+     implementation 'mysql:mysql-connector-java:8.0.31'
+     
        // 개발 편이성을 제공하는 라이브러리 => 개발 완료후 제거한다.
      developmentOnly 'org.springframework.boot:spring-boot-devtools'
+     
       // 단위테스트 관련 라이브러리
      testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -77,5 +83,10 @@ eclipse {
       targetCompatibility = 11
       javaRuntimeName = "JavaSE-11"
     }
-    
+  
+application {
+  mainClass = 'com.bitcamp.board.App'
 }
+
+    
+
