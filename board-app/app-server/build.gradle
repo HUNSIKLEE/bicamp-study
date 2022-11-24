@@ -1,50 +1,54 @@
 plugins {
-
-    id 'org.springframework.boot' version '2.7.4'
-    id 'io.spring.dependency-management' version '1.0.14.RELEASE'
-    id 'java'
-    id 'eclipse'
-    id 'application'
-`}
-
-repositories { 
-    mavenCentral()
+  id 'org.springframework.boot' version '2.7.4'
+  id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+  id 'java'
+  id 'eclipse' // 이클립스 설정 라이브러리
+  id 'application'
 }
 
-dependencies {
-      // spring-webmvc 관련 라이브러리 
-     implementation ('org.springframework.boot:spring-boot-starter-web') {
-      exclude group:'org.springframework.boot', module:'spring-boot-starter-tomcat'     
-     }
-     
-     // Undertow 서블릿 컨테이션 
-     implementation 'org.springframework.boot:spring-boot-starter-undertow'
-     
-     //Thymeleaf 관련 라이브러리
-     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-      // spring-jdbc 관련 라이브러리 
-     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-      // mybatis-spring 관련 라이브러리 
-     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-     
-     
-      // maridb jdbc driver 관련 라이브러리 
-    // runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-      // mysql jdbc driver 관련 라이브러리 
-     implementation 'mysql:mysql-connector-java:8.0.31'
-     
-       // 개발 편이성을 제공하는 라이브러리 => 개발 완료후 제거한다.
-     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-     
-      // 단위테스트 관련 라이브러리
-     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+repositories {
+    mavenCentral() // 의존 라이브러리를 다운받는 주소를 리턴받는다.
+}
 
-    // 프레임워크나 라이브러리 등에서 출력하는 로그를 다루는 라이브러리.
-    //implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
+dependencies { 
+    // spring-webmvc 관련 라이브러리
+    // spring-boot-starter 라이브러리들은 기본설정을 하는 클래스들이 포함되어있다.
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+      // 기본 서블릿 컨테이너 톰캣 제거 
+      exclude group:'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
     
+    // Undertow 서블릿 컨테이너
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+    
+    // Thymeleaf 관련 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-//    implementation project(':app-common')
+    // spring-jdbc 관련 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 
+    // mybatis-spring 관련 라이브러리
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+    
+    // mariadb jdbc driver 관련 라이브러 
+    // runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    
+    // mysql jdbc driver 관련 라이브러리
+    implementation 'mysql:mysql-connector-java:8.0.31'
+
+    // 개발 편의성을 제공하는 라이브러리 ==> 개발 완료 후 제거한다.
+    // 실행을 시킨후 설정을 바꾸고 서버를 리로딩하는 기능이 동작한다.
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    
+    // 단위테스트 관련 라이브러리
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+    // 프레임워크나 라이브러리 등에서 출력하는 로그를 다루는 라이브러리    
+    // implementation 'org.apache.logging.log4j:log4j:2.19.0'
+    
+    // implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
+    
+    //implementation project(':app-common')    
 }
 
 // 단위 테스트에 사용할 라이브러리를 지정한다.
@@ -52,9 +56,8 @@ tasks.named('test') {
   useJUnitPlatform()
 }
 
-
-// gradle build를 실행하여 배포 파일을 생성할 때 사용 할 이름.
-// 예) com.bitcamp.board.0.0.1-SNAPSHOT.jar 이런식으로 
+// `gradle build`를 실행하여 배포 파일을 생성할 때 사용할 이름
+// 예) com.bitcamp.board.0.0.1-SNAPSHOT.jar
 group = 'com.bitcamp'
 version = '0.0.1-SNAPSHOT'
 
@@ -83,10 +86,8 @@ eclipse {
       targetCompatibility = 11
       javaRuntimeName = "JavaSE-11"
     }
-  
+}
+
 application {
   mainClass = 'com.bitcamp.board.App'
 }
-
-    
-
