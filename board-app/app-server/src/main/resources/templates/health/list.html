@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>내용</th>
+        </tr>
+        </thead>
+
+        <tr th:each="health : ${health}">
+            <td><a th:href="@{/health/detail(no=${health.no})}" th:text="${health.title}"></a></td>
+            <td th:text="${health.writer}"></td>
+            <td th:text="${health.content}"></td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
