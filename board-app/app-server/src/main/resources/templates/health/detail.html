@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="updateh" method="post" id="detailForm">
+    <table>
+        <tr>
+            <th>번호</th>
+            <td><input type="text" name="no" th:value="${health.no}"readonly></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="title" th:value="${health.title}"></td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" name="writer" th:value="${health.writer}" readonly></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea name="content" cols="30" rows="5" th:text="${health.content}"></textarea></td>
+        </tr>
+    </table>
+        <button>수정</button>
+        <button type="button" th:onclick="'deletezz(' + ${health.no} + ');'">삭제</button>
+    </form>
+
+
+</body>
+<!--자바스크립스 변수명이 delete로 하면 실행이 안되는이유?-->
+<!--액션 값이 delete로 했을때 왜 리다이렉트되어 auth/form이 뜨는지?-->
+<script>
+    function deletezz(no) {
+
+	  var detailForm = document.getElementById("detailForm");
+	  console.log(detailForm);
+
+	  detailForm.action="deleteh";
+	  detailForm.method="get";
+	  detailForm.submit();
+	}
+</script>
+
+</html>
