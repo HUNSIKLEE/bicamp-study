@@ -2,8 +2,8 @@ package com.bitcamp.board.dao;
 
 import java.util.List;
 import java.util.Map;
+import javax.xml.stream.events.Comment;
 import org.apache.ibatis.annotations.Mapper;
-import com.bitcamp.testproject.vo.Comment;
 
 @Mapper
 public interface BoardCommentDao {
@@ -25,7 +25,7 @@ public interface BoardCommentDao {
   int deleteAll(int boardNo);
 
   int findTotalCommentOfMember(int memberNo);
-  
+
   List<Comment> findCommentsByMemberNo(Map<String, Object> paramMap);
 
 }
